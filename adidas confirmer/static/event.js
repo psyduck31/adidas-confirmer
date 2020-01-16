@@ -12,16 +12,35 @@ async function main() {
 
 
 async function startEvent(images, startTime) {
+	var count = 0;
+	for (i = 0; i < Math.floor(images.length/3); i++) {
+		$(".event").prepend("<div class='imageBlock'>");
+	}
+	for (i = 0; i < Math.floor(images.length/3); i++) {
+		$(".imageBlock").each(function() {
+			$(this).eq(0).append("<img class='eventImage'>");
+		})
+	}
+	/*
 	for (i = 0; i < images.length; i++)
 	{
-		$(".event").prepend("<img class='eventImage'>");
+		if (count == 0) {
+			$(".event").prepend("<div class='imageBlock'>")
+		}
+		$(".imageBlock").eq(-1).append("<img class='eventImage'>");
+		console.log($(".imageBlock").length);
+		count += 1;
+		if (count == 3) {
+			count = 0;
+		}
 	}
+	*/
 	$.ajax({
 		type: 'POST',
 		contentType: 'application/json',
 		url: "../api/getImage",
 		dataType : 'json',
-		data: JSON.stringify({"images": images}),
+		data: JSON.stringify({"images": images, "hash": getHash(document.URL.slice(document.URL.indexOf("/event")))}),
 		success: async function(data) {
 			await sleep(Date.parse(startTime) - Number(Date.now()));
 			$(".eventImage").each(function() {

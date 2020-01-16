@@ -1,0 +1,21 @@
+.event {
+	position: absolute;
+	top: 8%;
+	left: 30%;
+}
+
+
+.imageBlock {
+    float: left;
+    position: relative;
+    width: 100%;
+    margin-top: 1.66%;
+    vertical-align: middle;
+}
+img {
+	border: 0px;
+	margin-left: 1.66%;
+	display: inline-block;
+    top: 0;
+    left: 0;
+}
